@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://w2hr7crreoms"]
+
+[ext_resource type="Script" path="res://SceneLoading/Transition/SceneTransition.cs" id="1_2nj7w"]
+[ext_resource type="Script" path="res://SceneLoading/Transition/LoadingScreen.cs" id="2_1rb0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irkhm"]
+bg_color = Color(0.968627, 0.929412, 0.862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q52et"]
+bg_color = Color(0.0745098, 0.0823529, 0.286275, 1)
+
+[sub_resource type="Animation" id="Animation_61ygm"]
+resource_name = "FadeToBlack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(1920, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vc35a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7epw"]
+_data = {
+"Default": SubResource("Animation_61ygm"),
+"RESET": SubResource("Animation_vc35a")
+}
+
+[node name="SceneTransition" type="CanvasLayer" node_paths=PackedStringArray("_loadingScreen", "_animationPlayer")]
+layer = 2
+script = ExtResource("1_2nj7w")
+_loadingScreen = NodePath("LoadingScreen")
+_animationPlayer = NodePath("AnimationPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingScreen" type="Control" parent="." node_paths=PackedStringArray("_loadingLabel", "_progressBar")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1rb0p")
+_loadingLabel = NodePath("Label")
+_progressBar = NodePath("ProgressBar")
+
+[node name="Label" type="Label" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -130.0
+offset_right = 66.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Loading..."
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -810.0
+offset_top = -80.0
+offset_right = 810.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_irkhm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q52et")
+rounded = true
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q7epw")
+}

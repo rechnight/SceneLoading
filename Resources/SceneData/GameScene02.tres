@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SceneSO" load_steps=3 format=3 uid="uid://bcfr7pxgmsl7n"]
+
+[ext_resource type="Resource" uid="uid://sntvb3xrpc5t" path="res://Resources/TransitionSettings/FadeBlack_Loading_Input.tres" id="1_4knab"]
+[ext_resource type="Script" path="res://SceneLoading/SceneDataSO.cs" id="2_oyns7"]
+
+[resource]
+script = ExtResource("2_oyns7")
+SceneName = "GameScene02"
+TransitionSettings = ExtResource("1_4knab")

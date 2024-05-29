@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://coyu6ofihpjbc"]
+
+[ext_resource type="Script" path="res://SceneLoading/SceneLoader.cs" id="1_1fhge"]
+[ext_resource type="PackedScene" uid="uid://f3xkmlh4somu" path="res://SceneLoading/Transition/DefaultTransition.tscn" id="2_lie2f"]
+
+[node name="SceneLoader" type="Node"]
+script = ExtResource("1_1fhge")
+_scenesFolderPath = "res://Scenes/"
+_defaultTransition = ExtResource("2_lie2f")

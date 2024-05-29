@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TransitionSettingsSO" load_steps=3 format=3 uid="uid://dslbea321pt0q"]
+
+[ext_resource type="PackedScene" uid="uid://clqt8kcskujsm" path="res://SceneLoading/Transition/Variants/WipeDownTransition.tscn" id="1_a8ddv"]
+[ext_resource type="Script" path="res://SceneLoading/Transition/TransitionSettingsSO.cs" id="2_d2n1t"]
+
+[resource]
+script = ExtResource("2_d2n1t")
+Prefab = ExtResource("1_a8ddv")
+ShowLoadingScreen = true
+WaitForInput = false

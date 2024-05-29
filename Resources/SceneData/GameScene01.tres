@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SceneSO" load_steps=3 format=3 uid="uid://icbog3xfyv8i"]
+
+[ext_resource type="Resource" uid="uid://dslbea321pt0q" path="res://Resources/TransitionSettings/WipeDown_Loading.tres" id="1_ebrsc"]
+[ext_resource type="Script" path="res://SceneLoading/SceneDataSO.cs" id="3_04nwl"]
+
+[resource]
+script = ExtResource("3_04nwl")
+SceneName = "GameScene01"
+TransitionSettings = ExtResource("1_ebrsc")

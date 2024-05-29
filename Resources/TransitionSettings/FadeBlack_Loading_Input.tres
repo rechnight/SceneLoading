@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TransitionSettingsSO" load_steps=3 format=3 uid="uid://sntvb3xrpc5t"]
+
+[ext_resource type="PackedScene" uid="uid://bp24mikntqegh" path="res://SceneLoading/Transition/Variants/FadeBlackTransition.tscn" id="1_6yvdc"]
+[ext_resource type="Script" path="res://SceneLoading/Transition/TransitionSettingsSO.cs" id="1_urk6j"]
+
+[resource]
+script = ExtResource("1_urk6j")
+Prefab = ExtResource("1_6yvdc")
+ShowLoadingScreen = true
+WaitForInput = true
