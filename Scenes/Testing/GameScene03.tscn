@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjj8p4bxo32tu"]
 
-[ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_8mc68"]
-[ext_resource type="Resource" uid="uid://icbog3xfyv8i" path="res://Resources/SceneData/GameScene01.tres" id="2_ld2hi"]
+[ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_en2nt"]
+[ext_resource type="Resource" uid="uid://icbog3xfyv8i" path="res://Resources/SceneData/GameScene01.tres" id="2_u8agd"]
 
 [node name="GameScene03" type="Control"]
 layout_mode = 3
@@ -10,8 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8mc68")
-_nextScene = ExtResource("2_ld2hi")
+script = ExtResource("1_en2nt")
+_nextScene = ExtResource("2_u8agd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

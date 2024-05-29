@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public partial class SceneLoader : Node
 {
     [Export] private string _scenesFolderPath;
+    [Export] private bool _searchSubfolders;
     [Export] private PackedScene _defaultTransition;
 
     private Dictionary<string, string> _sceneDictionary = new();
@@ -33,7 +34,7 @@ public partial class SceneLoader : Node
 
     public override void _Ready()
     {
-        LoadScenesIntoDictionary();
+        LoadScenesIntoDictionary(_scenesFolderPath);
     }
 
     public void ChangeScenes(SceneDataSO sceneToLoad, Node sceneParent = null, Node sceneToUnload = null)
@@ -128,9 +129,9 @@ public partial class SceneLoader : Node
         _sceneTransition.OnTransitionOut -= HandleTransitionOut;
     }
 
-    private void LoadScenesIntoDictionary()
+    private void LoadScenesIntoDictionary(string folderPath)
     {
-        var directory = DirAccess.Open(_scenesFolderPath);
+        var directory = DirAccess.Open(folderPath);
         if (directory!= null)
         {
             directory.ListDirBegin();
@@ -140,10 +141,14 @@ public partial class SceneLoader : Node
                 if (string.IsNullOrEmpty(fileName))
                     break;
 
-                if (fileName.EndsWith(".tscn"))
+                if (directory.CurrentIsDir() && !fileName.StartsWith("."))
+                {
+                    LoadScenesIntoDictionary($"{folderPath}{fileName}/");
+                }
+                else if (fileName.EndsWith(".tscn"))
                 {
                     var sceneName = fileName.GetFile().GetBaseName();
-                    var fullPath = $"{_scenesFolderPath}{fileName}";
+                    var fullPath = $"{folderPath}{fileName}";
                     _sceneDictionary[sceneName] = fullPath;
                 }
             }
@@ -151,7 +156,7 @@ public partial class SceneLoader : Node
         }
         else
         {
-            GD.PrintErr($"Failed to open directory: {_scenesFolderPath}");
+            GD.PrintErr($"Failed to open directory: {folderPath}");
         }
     }
 
