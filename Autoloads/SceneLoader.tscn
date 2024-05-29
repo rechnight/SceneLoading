@@ -6,5 +6,5 @@
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_1fhge")
 _scenesFolderPath = "res://Scenes/"
-_searchSubdirectories = true
+_searchSubfolders = true
 _defaultTransition = ExtResource("2_lie2f")

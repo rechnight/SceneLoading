@@ -141,7 +141,7 @@ public partial class SceneLoader : Node
                 if (string.IsNullOrEmpty(fileName))
                     break;
 
-                if (directory.CurrentIsDir() && !fileName.StartsWith("."))
+                if (_searchSubfolders && directory.CurrentIsDir() && !fileName.StartsWith("."))
                 {
                     LoadScenesIntoDictionary($"{folderPath}{fileName}/");
                 }
